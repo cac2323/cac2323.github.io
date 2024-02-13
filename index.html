@@ -11,6 +11,15 @@
               display: block;
               padding: 20px;
             }
+
+            #link{
+                padding: 10px;
+                padding-left: 30px;
+            }
+
+            #write-up p{
+                padding-left: 30px;
+            }
         </style>
 
     </head>
@@ -100,9 +109,39 @@
                 
             </div>
 
-            <div id="vid> 
-                <iframe width="560" height="315" src="https://youtube.com/shorts/_u225zzpQ_A?feature=share"> </iframe>
+            <div id="vids">
+                <h2>VIDEO(s)</h2>
+                <div>
+                    <a id="link" href="https://youtube.com/shorts/_u225zzpQ_A?feature=share">Solo video</a> 
+                </div>
+                <div>
+                    <a id="link" href="https://youtube.com/shorts/_u225zzpQ_A?feature=share">Installation vid</a> 
+                </div>
+                
             </div>
+
+            <div id="write-up">
+                <h2>Write-up</h2>
+                <p>This installation makes use of ESP30s(TTGO T1), in order to make a Valentines Day themed project. 
+                My personal rendition of this project is an exploration of boundaries, colors, and randomness. 
+                </p>
+
+                <p>The project could be split into 2 features: the heart drawings and the text. Each heart was made by simply using the drawLine()
+                 function. From here, I created many instances of these hearts and used random() in order to randomly place them around the screen.
+                 I intentionally did not create boundaries for the hearts to be contained by, which is why sometimes the hearts are cut off if placed
+                 near the edges of the screen. My reasoning behind this is that "love" has no boundaries, and thus should not be contained by physical 
+                 limitations. A second level of randomess is added with the size of the hearts. The reason being that love is not a monolith and comes in many sizes. 
+                </p>
+
+                <p>I wanted to contrast this randomness with the lack thereof with the text. I have one of the "Happy valentines" text scrolling horizontally 
+                    across this screen. Love sometimes can be thought of in a linear manner, and this represents that aspect. 
+                    But there also is a stagnant text, representing how often times, in the present time of that 
+                    linear time, love can sometimes feel stagnant. 
+                </p>
+            </div>
+
+            
+            
             
         </div>
     </body>
