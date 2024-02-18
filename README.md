@@ -15,6 +15,20 @@ Note: make sure to change header in User_Setup_Select based on preloaded support
 I had to comment out the default and uncomment setup file for ESP32 and TTGO T-display ST7789V SPI bus TFT 
   - the specific line: #include <User_Setup/Setup25_TTGO_T_Display.h>
 
+To test your ESP30 is working:
+  1. in Arduino IDE, go to settings and add the following link to "Additional boards manager URLs"
+      - https://dl.espressif.com/dl/package_esp32_index.json
+  2. select board and corresponding port:
+      - Tools > esp30 > TTGO T1
+  3. Add esp30 library
+      - Tools > Manage Libraries > search for TFT_eSPI by Bodmer > Install
+  4. Load an example
+      - File > Example > Tft_eSPI > 160x128 > select an example
+      - Press the upload button
+      - screen should turn on and display your example
+  5. Try your own code! 
+
+
 ![IMG_0063 2](https://github.com/cac2323/cac2323.github.io/assets/117857284/dd2f7907-0949-4c50-b476-8f00639cff36)
 
 Project
