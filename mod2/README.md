@@ -20,7 +20,6 @@ Look at chapter 2 for buttons and chapter 11 for potentiometer tutorials in the 
 Project
 With the working code flashed onto the esp30 and with the battery connected, I put the esp30 in the envelope with the screen aligned with the cut out portion and used tape to secure it in place. (See pictures for front and back of envelope). In order to hang the envelope, we first had popsicle sticks with a hole in the middle, in order to loop thread around, and tie to holes punched in the envelope. For physically hanging up the contraption(stick, thread and envelope), we used an air vent and wedged the popsicle stick in order to have the thread and envelope securely hanging down. 
 
-![IMG_0425](https://github.com/cac2323/cac2323.github.io/assets/117857284/0c35f401-5d0e-4caa-b576-f6e13be91492)
-![IMG_0426](https://github.com/cac2323/cac2323.github.io/assets/117857284/6478f028-c165-410b-b931-57c9cb4a747b)
+![IMG_0979](https://github.com/cac2323/cac2323.github.io/blob/ebb2aa766baa1c83cda65dd260347f3098c0c17e/mod2/IMG_0979.jpg)
 
 
