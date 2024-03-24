@@ -15,7 +15,7 @@ I had to comment out the default and uncomment setup file for ESP32 and TTGO T-d
 Look at chapter 2 for buttons and chapter 11 for potentiometer tutorials in the provided pdf below. 
 ![C_tutorial](https://drive.google.com/file/d/1GLq7iRY_I1D5Fgma1Rd3yVhNt3dg7K0T/view)
 
-![IMG_0925](https://github.com/cac2323/cac2323.github.io/assets/117857284/dd2f7907-0949-4c50-b476-8f00639cff36)
+![IMG_0925](mod2/IMG_0925.JPG)
 
 Project
 With the working code flashed onto the esp30 and with the battery connected, I put the esp30 in the envelope with the screen aligned with the cut out portion and used tape to secure it in place. (See pictures for front and back of envelope). In order to hang the envelope, we first had popsicle sticks with a hole in the middle, in order to loop thread around, and tie to holes punched in the envelope. For physically hanging up the contraption(stick, thread and envelope), we used an air vent and wedged the popsicle stick in order to have the thread and envelope securely hanging down. 
