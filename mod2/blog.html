@@ -1,1 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>cac2323 git</title>
+        <style>
+            pre code {
+              background-color: #eee;
+              border: 1px solid #999;
+              display: block;
+              padding: 20px;
+            }
 
+            #link{
+                padding: 10px;
+                padding-left: 30px;
+            }
+
+            #write-up p{
+                padding-left: 30px;
+            }
+
+            #write-up img{
+                width: 50%;
+                padding-left: 50px;
+            }
+        </style>
+
+    </head>
+    <body>
+        <div class="container">
+            <h1>HW 2: Interactive Devices</h1>
+            <div id="code">
+                <h2>CODE</h2>
+                <pre>
+                    <code>
+#include <TFT_eSPI.h>
+#define BUTTON_PIN 33 // GPIO21 pin connected to button
+#define PIN_ANALOG_IN 4
+
+TFT_eSPI tft = TFT_eSPI(); // Initialize TFT display
+TFT_eSPI tft2 = TFT_eSPI(); // Initialize TFT display
+
+// Variables will change:
+int lastState = HIGH; // the previous state from the input pin
+int currentState;     // the current reading from the input pin
+unsigned long lastDebounceTime = 0;  // the last time the output pin was toggled
+unsigned long debounceDelay = 35;    // the debounce time; increase if the output flickers
+
+float floatMap(float x, float in_min, float in_max, float out_min, float out_max) {
+  return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
+}
+
+// the setup routine runs once when you press reset:
+void setup() {
+  
+  tft.init();
+  tft.setRotation(1); // Landscape orientation
+  tft2.init();
+  tft2.setRotation(1); // Landscape orientation
+  tft2.fillScreen(TFT_BLACK);
+
+  // initialize serial communication at 9600 bits per second:
+  Serial.begin(9600);
+  
+  pinMode(TFT_BL, OUTPUT);
+  ledcSetup(0, 5000, 8); // 0-15, 5000, 8
+  ledcAttachPin(TFT_BL, 0); // TFT_BL, 0 - 15
+  int analogValue = analogRead(36);
+  // Rescale to potentiometer's voltage (from 0V to 3.3V):
+  float voltage = floatMap(analogValue, 0, 4095, 0, 255);
+  ledcWrite(0, voltage); // 0-15, 0-255 (with 8 bit resolution); 0=totally dark;255=totally shiny
+  
+  // initialize the pushbutton pin as an pull-up input
+  pinMode(BUTTON_PIN, INPUT_PULLUP);
+  tft2.drawString("FREE PALESTINE", 0, 0, 2);
+}
+
+// the loop routine runs over and over again forever:
+void loop() {
+  // drawfree(int(random(0, 240)), int(random(0, 150)));
+  // read the state of the switch/button:
+  currentState = digitalRead(BUTTON_PIN);
+  if(lastState == LOW && currentState == HIGH){
+    Serial.println("The button is pressed");
+    drawfree(int(random(0, 240)), int(random(0, 150)));
+  }
+  // save the the last state
+  lastState = currentState;
+
+  // read the input on analog pin GPIO36:
+  int analogValue = analogRead(36);
+  // Rescale to potentiometer's voltage (from 0V to 3.3V):
+  float voltage = floatMap(analogValue, 0, 4095, 0, 255);
+
+  // print out the value you read:
+  Serial.print("Analog: ");
+  Serial.print(analogValue);
+  Serial.print(", Voltage: ");
+  Serial.println(voltage);
+  ledcWrite(0, voltage); // 0-15, 0-255 (with 8 bit resolution); 0=totally dark;255=totally shiny
+}
+
+void drawfree(int x, int y){
+    tft2.drawRect(x-5, y-5, 80, 40, TFT_WHITE);
+
+    tft2.drawRect(x, y, 75, 10, TFT_BLACK);
+    tft2.fillRect(x, y, 75, 10, TFT_BLACK);
+
+    tft2.drawRect(x, y+20, 75, 10, TFT_GREEN);
+    tft2.fillRect(x, y+20, 75, 10, TFT_GREEN);
+
+    tft2.drawRect(x+15, y+10, 60, 10, TFT_WHITE);
+    tft2.fillRect(x+15, y+10, 60, 10, TFT_WHITE);
+
+    tft2.fillTriangle(x, y, x, y+30, x+30, y+15, TFT_RED);
+
+}
+                    </code>
+                    
+                </pre>
+                
+            </div>
+
+            <div id="vids">
+                <h2>VIDEO</h2>
+                <div>
+<!--                     <a id="link" href="https://youtu.be/BuaKl-B7LtI">blog video</a>  -->
+                </div>
+
+<!--                 <iframe width="560" height="315" src="https://www.youtube.com/embed/BuaKl-B7LtI?si=4fzb_6Dk2QuH867y" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe> -->
+            </div>
+
+            <div id="write-up">
+                <h2>Write-up</h2>
+                <p>This installation makes use of ESP30s(TTGO T1), a battery, thread, popsicle stick, and envelope in order to make a Valentines Day themed project. 
+                My personal rendition of this project is an exploration of boundaries, colors, and randomness. 
+                </p>
+
+<!--                 <img src="IMG_0063.JPG"> -->
+
+                <p>The project could be split into 2 features: the heart drawings and the text. Each heart was made by simply using the drawLine()
+                 function. From here, I created many instances of these hearts and used random() in order to randomly place them around the screen.
+                 I intentionally did not create boundaries for the hearts to be contained by, which is why sometimes the hearts are cut off if placed
+                 near the edges of the screen. My reasoning behind this is that "love" has no boundaries, and thus should not be contained by physical 
+                 limitations. A second level of randomess is added with the size of the hearts. The reason being that love is not a monolith and comes in many sizes. 
+                </p>
+
+                <p>I wanted to contrast this randomness with the lack thereof with the text. I have one of the "Happy valentines" text scrolling horizontally 
+                    across this screen. Love sometimes can be thought of in a linear manner, and this represents that aspect. 
+                    But there also is a stagnant text, representing how often times, in the present time of that 
+                    linear time, love can sometimes feel stagnant. 
+                </p>
+
+                <p>
+                    In terms of presentation, we were given envelopes with an open square that would be where the ESP30 screen was placed. I decorated my envelope with the 
+                    Snoopy's infamous house with him carrying a heart shaped balloon for Valentine's.In order to hang the envelope, we tied
+                    thread around a popsicle stick, and connected it to the envelope. Wedging the stick between air vents, the envelope was able to be artistically 
+                    displayed. 
+                </p>
+<!--                 <img src="IMG_0066.JPG"> -->
+
+                <p>
+                    The technical difficulties I encountered in my work, was setting up my ESP30, only mainly because my intial ESP30s were faulty. 
+                    My first one's screen was not working, and another one was not being recognized as a port in Arduino IDE. 
+                </p>
+            </div>
+
+            
+            
+            
+        </div>
+    </body>
+</html>
